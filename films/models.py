@@ -35,3 +35,13 @@ class Film(models.Model):
     def genre_names(self):
         return [i.name for i in self.genres.all()]
 
+class Review(models.Model):
+    text = models.TextField()
+    stars = models.IntegerField()
+    film = models.ForeignKey(Film, on_delete=models.CASCADE,related_name='reviews')
+
+
+
+    def __str__(self):
+        return self.text
+    

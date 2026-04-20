@@ -22,8 +22,9 @@ class FilmListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Film 
-        fields = 'director genres id title rating release_year '.split()
-        
+        fields = 'director genres id title rating release_year reviews'.split()
+        depth = 1 
 
     def get_genres(self, film):
         return film.genre_names()[0:2]
+    
