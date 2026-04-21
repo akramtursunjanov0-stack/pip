@@ -19,14 +19,18 @@ def film_detail_api_view(request, id):
     return Response(data=data)
 
 
-@api_view(['GET'])
+@api_view(['GET', 'POST' ])
 def film_list_api_view(request):
-    films = Film.objects.select_related('director').prefetch_related('genres','reviews').all()
-    data = FilmListSerializer(films, many=True).data
-    return Response(
-        data=data,
-        status=status.HTTP_200_OK
-    )
-
+    if request.method == 'GET':
+            
+        films = Film.objects.select_related('director').prefetch_related('genres','reviews').all()
+        data = FilmListSerializer(films, many=True).data
+        return Response(
+            data=data,
+            status=status.HTTP_200_OK
+        )
+    elif request.method == 'POST':
+        return Response()
+    
 
 
