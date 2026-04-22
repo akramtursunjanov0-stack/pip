@@ -20,6 +20,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -29,7 +30,18 @@ INSTALLED_APPS = [
     'rest_framework',
     'drf_yasg',
     'films',
+
+
+
+
 ]
+
+JAZZMIN_SETTINGS = {
+    "site_title": "Admin",
+    "site_header": "Управление магазином",
+    "site_brand": "MyShop",
+    "welcome_sign": "Привет, админ 👋",
+}
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
