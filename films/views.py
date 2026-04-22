@@ -2,8 +2,11 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from .models import Film
-from .serializers import FilmListSerializer , FilmDetailSerializer
-
+from .serializers import (
+    FilmListSerializer 
+, FilmDetailSerializer , 
+FilmValidateSerializer
+)
 
 
 
@@ -44,13 +47,20 @@ def film_list_api_view(request):
         )
     elif request.method == 'POST':
         
-        title = request.data.get('title')
-        text = request.data.get('text')
-        release_year = request.data.get('release_year')
-        rating = request.data.get('rating')
-        is_hit = request.data.get('is_hit')
-        director_id = request.data.get('director_id')
-        genres = request.data.get('genres')
+        serializer = FilmValidateSerializer(data=request.data)
+        if not serializer.is_valid():
+            return Response(status=status.HTTP_400_BAD_REQUEST,
+                            data=serializer.errors)
+        
+        
+
+        title = serializer.validated_data.get('title')
+        text = serializer.validated_data.get('text')
+        release_year = serializer.validated_data.get('release_year')
+        rating = serializer.validated_data.get('rating')
+        is_hit = serializer.validated_data.get('is_hit')
+        director_id = serializer.validated_data.get('director_id')
+        genres = serializer.validated_data.get('genres')
 
 
 
