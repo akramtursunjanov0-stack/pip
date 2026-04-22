@@ -1,6 +1,6 @@
 from django.utils import timezone
 from rest_framework import serializers
-from .models import Film , Director
+from .models import Film , Director , Genre
 from rest_framework.exceptions import ValidationError
 
 class DirectorSerializer(serializers.ModelSerializer):
@@ -39,10 +39,16 @@ class FilmValidateSerializer(serializers.Serializer):
     director_id = serializers.IntegerField()
     genres = serializers.ListField(child=serializers.IntegerField())
 
-    def validate(self, attrs):
-        director_id = attrs.get('director_id')
+    def validate_derector_id(self, director_id):
         try:
             Director.objects.get(id=director_id)
         except Director.DoesNotExist:
             raise ValidationError('Director does not exist')
-        return attrs
+        return director_id 
+    
+    def validate_genres(self, genres):
+        genres = list(set(genres))
+        genres_from_db = Genre.objects.filter(id__in=genres)
+        if len(genres) != len(genres_from_db):
+            raise ValidationError('Genre does not exist')
+        return genres 
