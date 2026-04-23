@@ -7,6 +7,17 @@ from .serializers import (
 , FilmDetailSerializer , 
 FilmValidateSerializer
 )
+from rest_framework.viewsets import ModelViewSet
+
+
+
+class FilmViewSet(ModelViewSet):
+    queryset =Film.objects.all()
+    
+    def get_serializer_class(self):
+            if self.action == 'list':
+                return FilmListSerializer
+            return FilmDetailSerializer
 
 
 
