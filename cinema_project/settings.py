@@ -1,6 +1,3 @@
-
-
-
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -30,6 +27,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'drf_yasg',
     'films',
+    'users',
+
 ]
 
 
@@ -144,7 +143,5 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
-
 
 STATIC_URL = 'static/'

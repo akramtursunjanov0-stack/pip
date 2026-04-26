@@ -12,7 +12,11 @@ from rest_framework.viewsets import ModelViewSet
 
 
 class FilmViewSet(ModelViewSet):
-    queryset =Film.objects.all()
+    queryset =Film.objects.select_related(
+        'director'
+    ).prefetch_related(
+        'genres','reviews'
+    )
     
     def get_serializer_class(self):
             if self.action == 'list':
@@ -90,6 +94,3 @@ def film_list_api_view(request):
 
 
         return Response(status=status.HTTP_201_CREATED)
-    
-
-
