@@ -6,7 +6,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # секретный ключ 
 SECRET_KEY = 'django-insecure-(v+u=87#jx_0n7#op5lqc%e*av-=m%5381q13jo162mky7420)'
-
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 
 # вы ход в продакшен false
@@ -42,7 +42,7 @@ JAZZMIN_SETTINGS = {
     "welcome_sign": "Привет, админ 👋",
 }
 
-#pest_framework =
+#pest_framework = aut token
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES':[
         'rest_framework.authentication.TokenAuthentication'

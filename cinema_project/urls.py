@@ -9,6 +9,7 @@ from . import swagger
 router = DefaultRouter()
 router.register('films',FilmViewSet)
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/films/', views.film_list_api_view),
