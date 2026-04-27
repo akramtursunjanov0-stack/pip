@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'drf_yasg',
     'films',
     'users',
+    'rest_framework.authtoken',
 
 ]
 
@@ -42,11 +43,10 @@ JAZZMIN_SETTINGS = {
 
 #pest_framework =
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.AllowAny',
-    ],
+    'DEFAULT_AUTHENTICATION_CLASSES':[
+        'rest_framework.authentication.TokenAuthentication'
+    ]
 }
-
 # swagger система 
 SWAGGER_SETTINGS = {
     'USE_SESSION-AUTH' : False , 
@@ -109,8 +109,12 @@ WSGI_APPLICATION = 'cinema_project.wsgi.application'
 # база даных можно добавить poqsl
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME':'cinema_project_db',
+        'USER':'cinema_project_db_user',
+        'PASSWORD':'1234',
+        'HOST':'localhost',
+        'PORT':'5432',
     }
 }
 
