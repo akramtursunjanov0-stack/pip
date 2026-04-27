@@ -1,4 +1,5 @@
 from pathlib import Path
+import os 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -110,11 +111,11 @@ WSGI_APPLICATION = 'cinema_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME':'cinema_project_db',
-        'USER':'cinema_project_db_user',
-        'PASSWORD':'1234',
-        'HOST':'localhost',
-        'PORT':'5432',
+        'NAME':os.environ.get('NAME_DB'),
+        'USER':os.environ.get('USER_DB'),
+        'PASSWORD':os.environ.get('PASSWORD_DB'),
+        'HOST':os.environ.get('HOST_DB'),
+        'PORT':os.environ.get('PORT'),
     }
 }
 
